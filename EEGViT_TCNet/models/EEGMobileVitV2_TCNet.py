@@ -34,8 +34,6 @@ class EEGMobileVit_TCN(nn.Module):
         config.update({'num_channels': 768, 'image_size': (1, 14), 'patch_size': 1, 'conv_kernel_size ': 3})
 
         model = transformers.MobileViTV2ForImageClassification.from_pretrained(model_name, config=config, ignore_mismatched_sizes=True)
-        #model.mobilevit.conv_1x1_exp.convolution = torch.nn.Conv2d(160, 768, kernel_size=(1, 1), stride=(1, 1), bias=False)
-        #model.mobilevit.conv_1x1_exp.normalization = nn.BatchNorm2d(768)
         model.classifier = torch.nn.Sequential(
             torch.nn.Linear(512, 1000, bias=True),
             torch.nn.Dropout(p=0.1),
