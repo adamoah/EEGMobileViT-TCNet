@@ -114,7 +114,7 @@ def train(teacher_model, student_model, optimizer, scheduler = None):
 
             # Print the loss and accuracy for the current batch
             if i % 100 == 0:
-                print(f"Epoch {epoch}, Batch {i}, Loss: {loss.item()}")
+                print(f"Epoch {epoch}, Batch {i}, Distil_Loss: {loss.item()}, True_loss: {student_target_loss.item()}")
 
         epoch_train_loss /= len(train_loader)
         train_losses.append(epoch_train_loss)
