@@ -3,7 +3,7 @@ from models.EEGViT import EEGViT_raw
 from models.ViTBase import ViTBase
 from models.ViTBase_pretrained import ViTBase_pretrained
 from models.EEGVit_TCNet import EEGVit_TCN
-from models.EEGMobileVit_TCNet import EEGMobileVit_TCN
+from models.EEGMobileVitV2_TCNet import EEGMobileVit_TCN
 
 from helper_functions import split
 from dataset.EEGEyeNet import EEGEyeNetDataset
@@ -26,14 +26,14 @@ student_model = EEGMobileVit_TCN()
 EEGEyeNet = EEGEyeNetDataset('./dataset/Position_task_with_dots_synchronised_min.npz')
 batch_size = 64
 n_epoch = 15
-learning_rate = 1e-4
-temperature=5
-lambda_param=0.5
+learning_rate = 1e-3
+temperature=20
+lambda_param=0.9
 
 student_loss_function = nn.MSELoss()
 criterion = nn.KLDivLoss(reduction="batchmean")
 
-optimizer = torch.optim.Adam(student_model.parameters(), lr=learning_rate)
+optimizer = torch.optim.Adam(student_model.parameters(), lr=learning_rate, weight_decay = 0.3)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=6, gamma=0.1)
 
 
