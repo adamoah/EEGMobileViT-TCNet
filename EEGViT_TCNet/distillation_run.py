@@ -12,7 +12,6 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, Subset
 from tqdm import tqdm
 import numpy as np
-import time
 
 '''
 models: EEGViT_pretrained; EEGViT_raw; ViTBase; ViTBase_pretrained
@@ -77,7 +76,6 @@ def train(teacher_model, student_model, optimizer, scheduler = None):
     val_losses = []
     test_losses = []
     
-    start = time.time()
     print('training...')
     # Train the model
     for epoch in range(n_epoch):
@@ -162,9 +160,6 @@ def train(teacher_model, student_model, optimizer, scheduler = None):
 
         if scheduler is not None:
             scheduler.step()
-    end = time.time()
-    runtime = (end - start) / 60
-    print(runtime, "mins")
     
 if __name__ == "__main__":
     train(teacher_model, student_model,optimizer=optimizer, scheduler=scheduler)
