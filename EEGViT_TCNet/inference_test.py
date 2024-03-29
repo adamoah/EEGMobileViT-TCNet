@@ -48,9 +48,9 @@ def inference_test(model, model_name):
     model = model.to(device)
 
     model.eval()
-    start_time = time.time()
     runtimes = []
     for i in range(0, 5):
+	start_time = time.time()
         for round in tqdm(range(n_rounds)):
             with torch.no_grad():
 
