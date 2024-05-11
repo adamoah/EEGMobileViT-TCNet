@@ -1,6 +1,9 @@
-from models.EEGMobileVit_TCNet import EEGMobileVit_TCN
-from models.SwinEEG_pretrained_current import SwinEEG_pretrained
-from models.EEGVit_TCNet import EEGVIT_TCN
+from models.EEGViT_pretrained import EEGViT_pretrained
+from models.EEGViT import EEGViT_raw
+from models.ViTBase import ViTBase
+from models.ViTBase_pretrained import ViTBase_pretrained
+from models.EEGVit_TCNet import EEGVit_TCN
+from models.EEGMobileVitV2_TCNet import EEGMobileVit_TCN
 
 from helper_functions import split
 from dataset.EEGEyeNet import EEGEyeNetDataset
