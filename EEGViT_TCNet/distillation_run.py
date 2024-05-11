@@ -2,7 +2,7 @@ from models.EEGViT_pretrained import EEGViT_pretrained
 from models.EEGViT import EEGViT_raw
 from models.ViTBase import ViTBase
 from models.ViTBase_pretrained import ViTBase_pretrained
-from models.EEGVit_TCNet import EEGVit_TCN
+from models.EEGVit_TCNet import EEGVIT_TCN
 from models.EEGMobileVitV2_TCNet import EEGMobileVit_TCN
 
 from helper_functions import split
@@ -17,7 +17,7 @@ import numpy as np
 models: EEGViT_pretrained; EEGViT_raw; ViTBase; ViTBase_pretrained
 '''
 #intitialize fine-tuned teacher model
-teacher_model = EEGVit_TCN()
+teacher_model = EEGVIT_TCN()
 teacher_model.load_state_dict(torch.load("tcn_weights_cur.pt"), strict=False)
 teacher_model.eval()
  
