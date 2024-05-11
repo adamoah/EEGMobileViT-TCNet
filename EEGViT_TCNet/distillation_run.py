@@ -43,7 +43,7 @@ def train(teacher_model, student_model, optimizer, scheduler = None):
         scheduler: scheduling learning rate, used when finetuning pretrained models
     '''
     torch.cuda.empty_cache()
-    train_indices, val_indices, test_indices = split(EEGEyeNet.trainY[:,0],0.8,0.1,0.1)  # indices for the training set
+    train_indices, val_indices, test_indices = split(EEGEyeNet.trainY[:,0],0.7,0.15,0.15)  # indices for the training set
     print('create dataloader...')
     student_loss_function = nn.MSELoss()
     criterion = nn.KLDivLoss(reduction="batchmean")
