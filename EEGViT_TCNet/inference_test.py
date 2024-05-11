@@ -2,7 +2,7 @@ from models.EEGViT_pretrained import EEGViT_pretrained
 from models.EEGViT import EEGViT_raw
 from models.ViTBase_pretrained import ViTBase_pretrained
 from models.EEGVit_TCNet import EEGVit_TCN
-from models.EEGMobileVit_TCNet import EEGMobileVit_TCN
+from models.EEGMobileVitV2_TCNet import EEGMobileVit_TCN
 
 from helper_functions import split
 from dataset.EEGEyeNet import EEGEyeNetDataset
@@ -14,7 +14,7 @@ import numpy as np
 import time
 
 # model to test likely: moblevit, mobilevitv2, eegvit_tcn, eegvit (maybe)
-model = EEGViT_pretrained()
+model = EEGMobileVit_TCN()
 model.load_state_dict(torch.load("weights_cur.pt"), strict=False)
 EEGEyeNet = EEGEyeNetDataset('./dataset/Position_task_with_dots_synchronised_min.npz')
 
