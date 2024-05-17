@@ -1,1 +1,0 @@
-# EEGMobileViT-TCNet
