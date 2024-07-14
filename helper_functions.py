@@ -32,6 +32,6 @@ def compute_distil_loss(t_outputs, s_outputs, targets, s_loss_fn, KLD, temperatu
     student_target_loss = s_loss_gn(student_outputs.squeeze(), targets.squeeze())
 
     # return final distillation loss
-    return (1. - lambda_param) * student_target_loss + lambda_param * distillation_loss
+    return (1. - lambda_param) * student_target_loss + lambda_param * distillation_loss, student_target_loss
     
     
