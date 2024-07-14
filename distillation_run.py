@@ -94,19 +94,10 @@ def train(teacher_model, student_model, optimizer, scheduler = None):
             # Compute teacher outputs
             with torch.no_grad():
                 teacher_outputs = teacher_model(inputs)
-                
-            # Compute soft targets
-            soft_teacher = nn.functional.softmax(teacher_outputs.squeeze() / temperature, dim=-1)
-            soft_student = nn.functional.log_softmax(student_outputs.squeeze() / temperature, dim=-1)
 
-            # Compute distillation loss
-            distillation_loss = criterion(soft_student, soft_teacher) * (temperature**2)
-
-            # true label loss
-            student_target_loss = student_loss_function(student_outputs.squeeze(), targets.squeeze())
-
-            loss = (1. - lambda_param) * student_target_loss + lambda_param * distillation_loss
-
+            # computer distillation loss and true target loss
+            loss, student_target_loss = compute_distil_loss(teacher_outputs, student_outputs, targets, student_loss_function, criterion)
+         
             # Compute the gradients and update the parameters
             loss.backward()
             optimizer.step()
